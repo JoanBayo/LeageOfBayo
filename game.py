@@ -129,6 +129,18 @@ def curar2():
     return redirect(url_for('default'))
 
 
+@app.route('/recuperarMana1')
+def recuperarMana1():
+    session["accio1"] = "recuperarMana"
+    return redirect(url_for('default'))
+
+
+@app.route('/recuperarMana2')
+def recuperarMana2():
+    session["accio2"] = "recuperarMana"
+    return redirect(url_for('default'))
+
+
 @app.route('/torn')
 def ferTorn():
     p1 = session["faccio1"][len(session["faccio1"]) - 1]
@@ -156,6 +168,17 @@ def ferTorn():
     if session["accio2"] == "curar":
         c2 = p2.curar()
         accio = "-> Personatge 2 es cura " + str(c2) + " de vida.\n" + accio
+        print(accio)
+
+    # RecuperarMana:
+    if session["accio1"] == "recuperarMana":
+        m1 = p1.recuperarMana()
+        accio = "-> Personatge 1 recupera " + str(m1) + " punts de mana.\n" + accio
+        print(accio)
+
+    if session["accio2"] == "recuperarMana":
+        m2 = p2.recuperarMana()
+        accio = "-> Personatge 2 recupera " + str(m2) + " punts de mana.\n" + accio
         print(accio)
 
     # Atac físic:
@@ -195,12 +218,16 @@ def ferTorn():
             p1.danyar(mal)) + " punts de mal.\n" + accio
         print(accio)
 
+    p1.recuperarManaPasiva()
+    p2.recuperarManaPasiva()
+
     # Si mor un personatge generem un altre:
     if p1.vida <= 0:
         crearPersonatge(session["faccio1"])
         accio = "\n\n🥇 Personatge 1 ha mort, el Personatge 2 s'emporta la victoria 🥇\n\n\n" + accio
         session["faccio1"].clear()
         crearPersonatge(session["faccio1"])
+        p2.recuperarVidaPasiva()
         print(accio)
         p1.winingqueuelose()
         p2.winingqueueplus()
@@ -210,6 +237,7 @@ def ferTorn():
         accio = "\n\n🥇 Personatge 2 ha mort, el Personatge 1 s'emporta la victoria 🥇\n\n\n" + accio
         session["faccio2"].clear()
         crearPersonatge(session["faccio2"])
+        p1.recuperarVidaPasiva()
         print(accio)
         p2.winingqueuelose()
         p1.winingqueueplus()

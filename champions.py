@@ -10,8 +10,10 @@ class champion():
         self.vidaMaxima = self.vida
         self.atacMagic = randint(1, 100)
         self.mana = randint(1, 100)
+        self.manaMaxim = self.mana
         self.armadura = randint(1, 50)
         self.pocions = randint(1, 10)
+        self.pocionsMana = randint(1, 10)
         self.imatge = selectChampImage()
         self.nom = selectChampName(self.imatge)
         self.winingqueue = 0
@@ -21,7 +23,7 @@ class champion():
 
     def atacarAmbMagia(self):
         resultat = 0
-        if self.mana >= 19:
+        if self.mana >= 10:
             self.mana -= 10
             resultat = self.atacMagic + randint(1, 100)
         return resultat
@@ -39,6 +41,16 @@ class champion():
             self.vida = min(self.vida, self.vidaMaxima)
         return puntsCurats
 
+    def recuperarMana(self):
+        puntsRecuperats = 0
+        if self.pocionsMana > 0:
+            self.pocionsMana -= 1
+            punts = randint(1, 50)
+            puntsRecuperats = min(punts, self.manaMaxim - self.mana)
+            self.mana += punts
+            self.mana = min(self.mana, self.manaMaxim)
+        return puntsRecuperats
+
     def danyar(self, mal):
         malRebut = 0
         malRebut = min(self.vida, mal)
@@ -53,6 +65,20 @@ class champion():
         self.winingqueue = 0
         if self.winingqueue == 0:
             return ""
+
+    def recuperarManaPasiva(self):
+        puntsMana = randint(1, 3)
+        puntsRecuperats = min(puntsMana, self.manaMaxim - self.mana)
+        self.mana += puntsRecuperats
+        self.mana = min(self.mana, self.manaMaxim)
+        return puntsRecuperats
+
+    def recuperarVidaPasiva(self):
+        puntsVida = randint(1, 100)
+        puntsCurats = min(puntsVida, self.vidaMaxima - self.vida)
+        self.vida += puntsVida
+        self.vida = min(self.vida, self.vidaMaxima)
+        return puntsCurats
 
 
 def selectChampImage():
