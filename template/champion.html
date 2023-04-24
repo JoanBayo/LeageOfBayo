@@ -1,0 +1,38 @@
+{% extends "baseLOB.html" %}
+{% block champion1 %}
+  <div class="card shadow-sm bg-light bg-opacity-25" style="border: 2px aquamarine solid;">
+      <img class="center mt-3" width="75%" src="/{{ personatge1.get('imatge') }}">
+    <div class="card-body">
+        <h1>{{ personatge1.get('nom') }}</h1>
+            <p>Atac: {{ personatge1.get("atac") }}</p>
+            <p>Atac màgic: {{ personatge1.get("atacMagic") }}</p>
+            <p>Mana: {{ personatge1.get("mana") }}</p>
+            <p>Armadura: {{ personatge1.get("armadura") }}</p>
+            <p>Pocions: {{ personatge1.get("pocions") }}</p>
+            <p>Vida: {{ personatge1.get("vida") }}/{{ personatge1.get("vidaMaxima") }}</p>
+            {% if personatge1.winingqueue >= 1 %}
+                <p>Winning Streak: {{ personatge1.get("winingqueue") }} 🔥</p>
+            {% elif personatge1.winingqueue == 0 %}
+                <p>Winning Streak: 0</p>
+            {% endif %}
+
+{% endblock %}
+{% block champion2 %}
+  <div class="card shadow-sm bg-light bg-opacity-25" style="border: 2px aquamarine solid;">
+      <img class="center mt-3" width="75%" src="/{{ personatge2.get('imatge') }}">
+    <div class="card-body">
+        <h1>{{ personatge2.get('nom') }}</h1>
+        <p>Atac: {{ personatge2.get("atac") }}</p>
+        <p>Atac màgic: {{ personatge2.get("atacMagic") }}</p>
+        <p>Mana: {{ personatge2.get("mana") }}</p>
+        <p>Armadura: {{ personatge2.get("armadura") }}</p>
+        <p>Pocions: {{ personatge2.get("pocions") }}</p>
+        <p>Vida: {{ personatge2.get("vida") }}/{{ personatge2.get("vidaMaxima") }}</p>
+            {% if personatge2.winingqueue >= 1 %}
+                <p>Winning Streak: {{ personatge2.get("winingqueue") }} 🔥</p>
+            {% elif personatge2.winingqueue == 0 %}
+                <p>Winning Streak: 0</p>
+            {% endif %}
+
+
+{% endblock %}
