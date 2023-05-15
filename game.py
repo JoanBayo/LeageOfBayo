@@ -5,6 +5,8 @@ from flask_session import Session
 import ZODB, ZODB.FileStorage
 import transaction
 import pygame
+import random
+
 
 pygame.init()
 app = Flask(__name__)
@@ -153,6 +155,7 @@ def ferTorn():
     a2 = p2.armadura
     accio = ""
 
+    # Defençar:
     if session["accio1"] == "defensar":
         a1 = p1.defensar()
         accio = "-> El personatge 1 és proteigeix amb una força de " + str(a1) + ".\n" + accio
@@ -189,6 +192,9 @@ def ferTorn():
     if session["accio1"] == "atacar":
         atac = p1.atacar()
         mal = atac - a2
+        print(mal)
+        print(atac)
+        print(a2)
         if mal < 0:
             mal = 0
         accio = "-> Personatge 1 ataca amb una força de " + str(atac) + " i fa " + str(
@@ -204,6 +210,7 @@ def ferTorn():
             p1.danyar(mal)) + " punts de mal.\n" + accio
         pygame.mixer.Sound("static/music/atacar.mp3").play()
 
+    # Atac magic:
     if session["accio1"] == "magia":
         atac = p1.atacarAmbMagia()
         mal = atac - a2
@@ -222,6 +229,31 @@ def ferTorn():
             p1.danyar(mal)) + " punts de mal.\n" + accio
         pygame.mixer.Sound("static/music/atacarMagic.mp3").play()
 
+    # Contratacar amb la defença:
+    if session["accio1"] == "defensar":
+        contratac = p1.defensar()
+        r = random.randint(1, 100)
+        if r <= contratac:
+            atac = p1.atacar()
+            mal = atac - a2
+            if mal < 0:
+                mal = 0
+            accio = accio + "-> Finalment el personatge 1 contr ataca amb una força " + str(atac) + " i fa " + str(
+                p2.danyar(mal)) + " punts de mal.\n\n" + accio
+            pygame.mixer.Sound("static/music/atacar.mp3").play()
+
+    if session["accio2"] == "defensar":
+        contratac = p2.defensar()
+        r = random.randint(1, 100)
+        if r <= contratac:
+            atac = p2.atacar()
+            mal = atac - a1
+            if mal < 0:
+                mal = 0
+            accio = accio + "-> Finalment el personatge 2 contr ataca amb una força " + str(atac) + " i fa " + str(
+                p1.danyar(mal)) + " punts de mal.\n\n" + accio
+            pygame.mixer.Sound("static/music/atacar.mp3").play()
+
     p1.recuperarManaPasiva()
     p2.recuperarManaPasiva()
 
@@ -235,7 +267,6 @@ def ferTorn():
         pygame.mixer.Sound("static/music/mort.mp3").play()
         p2.winingqueueplus()
         if session["character1"] == 6:
-            print("hola")
             return guanyadorPartida(2)
         else:
             return deadChamp1()
@@ -249,7 +280,6 @@ def ferTorn():
         p2.winingqueuelose()
         p1.winingqueueplus()
         if session["character2"] == 6:
-            print("hola")
             return guanyadorPartida(1)
         else:
             return deadChamp2()
@@ -319,10 +349,10 @@ def guanyadorPartida(winer):
     enviroment = Environment(loader=FileSystemLoader("template/"))
     template = enviroment.get_template("finalGame.html")
     info = {"info": "Jugador " + str(winer)}
-    print(info)
     contingut = template.render(info)
     return f'{contingut}'
 
 # kaisa
 # milo
 # belvez
+# aatrox
