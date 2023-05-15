@@ -29,6 +29,7 @@ class champion():
         return resultat
 
     def defensar(self):
+
         return self.armadura + randint(1, 100)
 
     def curar(self):
@@ -79,6 +80,14 @@ class champion():
         self.vida += puntsVida
         self.vida = min(self.vida, self.vidaMaxima)
         return puntsCurats
+
+    def sumarPotis(self, potis):
+        self.pocions = self.pocions + potis
+
+    def sumarPotisMana(self, potis):
+        self.pocionsMana = self.pocionsMana + potis
+    def sumarArmadura(self, armadura):
+        self.armadura = armadura
 
 
 def selectChampImage():

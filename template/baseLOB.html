@@ -26,95 +26,130 @@
         p{
             font-size: 30px;
             margin-left: 20%;
-
         }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+
     </style>
     <title>Joc de Batalles</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">BATALLES</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Opcions
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="/nova">Crear Partida</a></li>
-            <li><a class="dropdown-item" href="/recuperarPartida">Carregar Partida</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="/guardarPartida">Guardar Partida</a></li>
-          </ul>
-        </li>
-      </ul>
-        <p>LEAGUE OF BAYO</p>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">BATALLES</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Opcions
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/nova">Crear Partida</a></li>
+                        <li><a class="dropdown-item" href="/recuperarPartida">Carregar Partida</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/guardarPartida">Guardar Partida</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <p>LEAGUE OF BAYO</p>
+        </div>
     </div>
-  </div>
 </nav>
 
 
 <div class="album py-5">
     <div class="container-fluid">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col" style="margin-left: 18%">
-              <p class="card-text">
-                  {% block champion1 %}
-                  {% endblock %}
-              </p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group center">
-                    <button class="btn  btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">ACCIÓ</button>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="/atacar1">🥊 ATACAR</a></li>
-                                <li><a class="dropdown-item" href="/magia1">🪄 ATACAR AMB MÀGIA</a></li>
-                                <li><a class="dropdown-item" href="/defensar1">🛡️ DEFENSAR</a></li>
-                                <li><a class="dropdown-item" href="/curar1">🩹 CURAR</a></li>
-                                <li><a class="dropdown-item" href="/recuperarMana1">🧪 RECUPERAR MANA</a></li>
-                              </ul>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col" style="margin-left: 18%">
+                <p class="card-text">
+                    {% block champion1 %}
+                    {% endblock %}
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group center">
+                        <button class="btn  btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">ACCIÓ
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="/atacar1">🥊 ATACAR</a></li>
+                            <li><a class="dropdown-item" href="/magia1">🪄 ATACAR AMB MÀGIA</a></li>
+                            <li><a class="dropdown-item" href="/defensar1">🛡️ DEFENSAR</a></li>
+                            <li><a class="dropdown-item" href="/curar1">🩹 CURAR</a></li>
+                            <li><a class="dropdown-item" href="/recuperarMana1">🧪 RECUPERAR MANA</a></li>
+                        </ul>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-        <div class="col">
-              <p class="card-text">
-                  {% block champion2 %}
-                  {% endblock %}
-              </p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group center">
-                    <button class="btn  btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">ACCIÓ</button>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="/atacar2">🥊 ATACAR</a></li>
-                                <li><a class="dropdown-item" href="/magia2">🪄 ATACAR AMB MÀGIA</a></li>
-                                <li><a class="dropdown-item" href="/defensar2">🛡️ DEFENSAR</a></li>
-                                <li><a class="dropdown-item" href="/curar2">🩹 CURAR</a></li>
-                                <li><a class="dropdown-item" href="/recuperarMana2">🧪 RECUPERAR MANA</a></li>
-                              </ul>
-                </div>
-              </div>
+    </div>
+    <div class="col">
+        <p class="card-text">
+            {% block champion2 %}
+            {% endblock %}
+        </p>
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group center">
+                <button class="btn  btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">ACCIÓ
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="/atacar2">🥊 ATACAR</a></li>
+                    <li><a class="dropdown-item" href="/magia2">🪄 ATACAR AMB MÀGIA</a></li>
+                    <li><a class="dropdown-item" href="/defensar2">🛡️ DEFENSAR</a></li>
+                    <li><a class="dropdown-item" href="/curar2">🩹 CURAR</a></li>
+                    <li><a class="dropdown-item" href="/recuperarMana2">🧪 RECUPERAR MANA</a></li>
+                </ul>
             </div>
-          </div>
         </div>
-      </div>
     </div>
 </div>
- <div>
-        <div class="card shadow-sm bg-light bg-opacity-25">
-            <div class="btn-group center">
-                <a href="/torn">
-                    <input type="submit" name="torn" value="PROCESAR TORN">
-                </a>
-            </div>
+</div>
+</div>
+</div>
+</div>
+<div>
+    <div class="card shadow-sm bg-light bg-opacity-25">
+        <div class="btn-group center">
+            <a href="/torn">
+                <input type="submit" name="torn" value="PROCESAR TORN">
+            </a>
         </div>
     </div>
-    {% block accio %}
-    <textarea style="width:80%;"class="form-control bg-light bg-opacity-50 center" id="exampleFormControlTextarea1" rows="6" readonly>{{accio}}</textarea>
-    {% endblock %}
+</div>
+{% block accio %}
+<textarea style="width:80%;" class="form-control bg-light bg-opacity-50 center" id="exampleFormControlTextarea1"
+          rows="6" readonly>{{accio}}</textarea>
+{% endblock %}
+<div class = "mt-2">
+    <audio src="static/music/song.mp3" controls autoplay>
+        League of Legends music
+    </audio>
+</div>
 </body>
 </html>

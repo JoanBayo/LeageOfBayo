@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FJoc de Batalles</title>
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f2f2f2;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      font-weight: bold;
+      display: block;
+    }
+
+    .form-group input[type="checkbox"] {
+      margin-left: 5px;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #45a049;
+    }
+
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>El jugador 2 guanya la ronda!!</h2>
+    <h3>Vols quedarte amb els objectes del jugador 1?</h3>
+    <form action="/procesar1" method="POST">
+        <div class="form-group">
+            <label for="armadura">Armadura: {{ personatge1.get("armadura") }} (Actual: {{
+                personatge2.get("armadura")}})</label>
+            <input type="checkbox" id="armadura" name="armadura" value="si">
+            <label for="armadura">Sí</label>
+        </div>
+        <div class="form-group">
+            <label for="pociones">Pocions de Vida: {{ personatge1.get("pocions") }} (Actual: {{
+                personatge2.get("pocions")}})</label>
+            <input type="checkbox" id="pociones" name="pociones" value="si">
+            <label for="pociones">Sí</label>
+        </div>
+        <div class="form-group">
+            <label for="mana">Pocions de Mana: {{ personatge1.get("pocionsMana") }} (Actual: {{
+                personatge2.get("pocionsMana")}})</label>
+            <input type="checkbox" id="mana" name="mana" value="si">
+            <label for="mana">Sí</label>
+        </div>
+        <button type="submit" class="btn">Enviar</button>
+    </form>
+</div>
+</body>
+</html>
