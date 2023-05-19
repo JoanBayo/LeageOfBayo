@@ -281,6 +281,7 @@ def ferTorn():
         p1.winingqueueplus()
         if session["character2"] == 6:
             return guanyadorPartida(1)
+
         else:
             return deadChamp2()
 
